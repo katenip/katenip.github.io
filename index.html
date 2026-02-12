@@ -9,25 +9,29 @@
   <style>
     :root{
       --bg: #0b0d12;
-      --panel: #121522;
       --text: #e9ecf5;
       --muted: #a9b0c2;
       --line: rgba(255,255,255,.10);
+      --card: rgba(255,255,255,.04);
+      --card2: rgba(0,0,0,.22);
       --accent: #6ea8ff;
-      --accent2: #9bffc9;
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --accentSoft: rgba(110,168,255,.18);
+      --shadow: 0 18px 60px rgba(0,0,0,.50);
       --radius: 18px;
-      --maxw: 980px;
+      --maxw: 1180px;
     }
 
     *{ box-sizing: border-box; }
     html,body{ height:100%; }
+
     body{
       margin:0;
       color: var(--text);
-      background: radial-gradient(1000px 600px at 20% 10%, rgba(110,168,255,.12), transparent 55%),
-                  radial-gradient(900px 700px at 80% 30%, rgba(155,255,201,.10), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(1100px 700px at 18% 12%, rgba(110,168,255,.12), transparent 60%),
+        radial-gradient(900px 700px at 82% 30%, rgba(110,168,255,.08), transparent 60%),
+        radial-gradient(1000px 700px at 70% 90%, rgba(155,255,201,.06), transparent 60%),
+        var(--bg);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       line-height: 1.55;
     }
@@ -38,26 +42,18 @@
     .wrap{
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 32px 16px 48px;
+      padding: 26px 16px 44px;
     }
 
     header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      padding: 18px 18px 0;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
+      display:grid;
+      gap: 14px;
+      padding: 10px 2px 6px;
     }
 
     .name{
-      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
-      font-weight: 750;
+      font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+      font-weight: 780;
       letter-spacing: .2px;
       margin:0;
     }
@@ -65,14 +61,14 @@
     .subtitle{
       margin:0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
 
     .pillrow{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top: 12px;
+      margin-top: 6px;
     }
 
     .pill{
@@ -85,8 +81,8 @@
     }
 
     .card{
-      margin-top: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      margin-top: 14px;
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.02));
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -97,7 +93,7 @@
       display:flex;
       gap: 6px;
       flex-wrap:wrap;
-      padding: 12px 12px;
+      padding: 10px 10px;
       border-bottom: 1px solid var(--line);
       background: rgba(0,0,0,.18);
     }
@@ -117,18 +113,16 @@
       color: var(--text);
       background: rgba(255,255,255,.05);
       border-color: rgba(255,255,255,.06);
+      text-decoration:none;
     }
 
     .tabbtn[aria-selected="true"]{
       color: var(--text);
-      background: rgba(110,168,255,.10);
-      border-color: rgba(110,168,255,.30);
+      background: var(--accentSoft);
+      border-color: rgba(110,168,255,.35);
     }
 
-    main{
-      padding: 18px;
-    }
-
+    main{ padding: 18px; }
     section[hidden]{ display:none; }
 
     .grid{
@@ -137,13 +131,12 @@
       gap: 14px;
     }
 
-    @media (min-width: 820px){
-      .grid.two{ grid-template-columns: 1.15fr .85fr; }
-      .grid.cards{ grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 920px){
+      .grid.home{ grid-template-columns: 1.3fr .7fr; }
     }
 
     .panel{
-      background: rgba(0,0,0,.20);
+      background: var(--card2);
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 14px;
@@ -160,7 +153,7 @@
       font-size: 1.02rem;
     }
 
-    p{ margin: 0 0 10px; color: var(--text); }
+    p{ margin: 0 0 10px; }
     .muted{ color: var(--muted); }
 
     .list{
@@ -169,12 +162,6 @@
       color: var(--muted);
     }
     .list li{ margin: 6px 0; }
-
-    .proj{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
 
     .meta{
       display:flex;
@@ -192,30 +179,38 @@
     }
 
     .tag{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 0.85rem;
-      padding: 5px 8px;
+      padding: 6px 8px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color: var(--muted);
     }
 
-    footer{
-      padding: 12px 18px 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.92rem;
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 820px){
+      .cards{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1200px){
+      .cards{ grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .proj{
       display:flex;
-      flex-wrap:wrap;
-      gap: 10px 16px;
-      justify-content:space-between;
-      background: rgba(0,0,0,.12);
+      flex-direction:column;
+      gap:6px;
     }
 
     .links{
       display:flex;
       flex-wrap:wrap;
       gap: 10px 14px;
+      margin-top: 8px;
     }
 
     .btnlink{
@@ -233,9 +228,28 @@
       text-decoration:none;
     }
 
-    .note{
-      font-size: .92rem;
+    footer{
+      padding: 12px 18px 16px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
+      font-size: 0.92rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px 16px;
+      justify-content:space-between;
+      background: rgba(0,0,0,.12);
+    }
+
+    .sectionTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .sectionTitle .right{
+      color: var(--muted);
+      font-size: .92rem;
     }
   </style>
 </head>
@@ -243,14 +257,12 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">
+      <div>
         <h1 class="name">Kate Scarboro</h1>
-        <p class="subtitle">
-          Computer Science • University of North Carolina at Charlotte (UNCC)
-        </p>
+        <p class="subtitle">Computer Science • University of North Carolina at Charlotte (UNCC)</p>
         <div class="pillrow">
-          <span class="pill">B.S. in Computer Science — UNCC (June 2024)</span>
-          <span class="pill">Currently pursuing M.S. in Computer Science — UNCC</span>
+          <span class="pill">B.S. Computer Science — UNCC (2024)</span>
+          <span class="pill">M.S. Computer Science — UNCC (in progress)</span>
         </div>
       </div>
     </header>
@@ -265,62 +277,74 @@
 
       <main>
         <section id="tab-home" role="tabpanel" aria-labelledby="btn-home">
-          <div class="grid two">
+          <div class="grid home">
             <div class="panel">
-              <h2>Summary</h2>
+              <div class="sectionTitle">
+                <h2 style="margin:0;">Summary</h2>
+                <div class="right">Summer 2026 internship search</div>
+              </div>
+
               <p class="muted">
-                I’m a Computer Science student focused on building practical, projects—especially in Unity (C#),
-                interactive systems, and applied AI. This site is intentionally minimal and will grow over time.
+                I’m a Computer Science student focused on building practical projects—especially in Unity (C#),
+                interactive systems, and applied AI.
               </p>
-              <p class="note">
-              </p>
+
+              <div class="panel" style="margin-top:14px;">
+                <h2>Skills</h2>
+                <div class="krow" aria-label="Skill tags">
+                  <span class="tag">csharp</span>
+                  <span class="tag">python</span>
+                  <span class="tag">javascript</span>
+                  <span class="tag">unity</span>
+                  <span class="tag">git</span>
+                  <span class="tag">ml</span>
+                  <span class="tag">systems</span>
+                </div>
+              </div>
             </div>
 
             <div class="panel">
               <h2>Contact</h2>
               <p class="muted" style="margin-bottom:8px;">
-                United States • (919) 805-6711<br/>
+                United States<br/>
+                (919) 805-6711<br/>
                 <a href="mailto:scarboro.kate@gmail.com">scarboro.kate@gmail.com</a>
               </p>
+
               <div class="links">
                 <a class="btnlink" href="https://www.linkedin.com/in/kate-scarboro-543b391b8/" target="_blank" rel="noreferrer">LinkedIn</a>
                 <a class="btnlink" href="https://github.com/katenip" target="_blank" rel="noreferrer">GitHub</a>
               </div>
-            </div>
-          </div>
 
-          <div class="panel" style="margin-top:14px;">
-            <h2>Skills</h2>
-            <div class="krow" aria-label="Skill tags">
-              <span class="tag">C#</span>
-              <span class="tag">Python</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Unity</span>
-              <span class="tag">Git / GitHub</span>
-              <span class="tag">AI Systems</span>
-              <span class="tag">Game Dev Concepts</span>
+              <div class="panel" style="margin-top:14px;">
+                <h2>Focus</h2>
+                <ul class="list">
+                  <li>Unity gameplay systems + tools</li>
+                  <li>Applied ML (practical, real datasets)</li>
+                  <li>Clean, maintainable code</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
+
         <section id="tab-projects" role="tabpanel" aria-labelledby="btn-projects" hidden>
           <h2>Projects</h2>
           <p class="muted" style="margin-bottom:14px;">
-            A selection of some of the work ive done in school
+            A selection of coursework projects and personal builds.
           </p>
 
-          <div class="grid cards">
+          <div class="cards">
             <article class="panel proj">
               <h3>SuperPuzzleBar</h3>
               <div class="meta">
-                <span>Unity (C#)</span>
-                <span>•</span>
-                <span>Aug 2023 – Dec 2023</span>
+                <span>Unity (C#)</span><span>•</span><span>Aug 2023 – Dec 2023</span>
               </div>
               <ul class="list">
-                <li>2D puzzle platformer with time manipulation and a ghost replay mechanic.</li>
-                <li>Built under a major time constraint as part of a capstone project. The scope evolved throughout the semester, and I brought it to a playable state.</li>
+                <li>2D puzzle platformer with time manipulation and ghost replay.</li>
+                <li>Built under a major time constraint as a capstone; shipped a playable prototype.</li>
               </ul>
-              <div class="links" style="margin-top:10px;">
+              <div class="links">
                 <a class="btnlink" href="https://github.com/katenip/SuperPuzzleBar" target="_blank" rel="noreferrer">GitHub Repo</a>
               </div>
             </article>
@@ -328,15 +352,13 @@
             <article class="panel proj">
               <h3>Soundscape</h3>
               <div class="meta">
-                <span>Unity (C#), AI</span>
-                <span>•</span>
-                <span>Aug 2023 – Dec 2023</span>
+                <span>Unity (C#), AI</span><span>•</span><span>Aug 2023 – Dec 2023</span>
               </div>
               <ul class="list">
                 <li>AI enemy pathfinding using Unity NavMesh + FSMs.</li>
-                <li>Collaborated in an Agile team (4), participated in sprint reviews and scene integration.</li>
+                <li>Worked in a 4-person Agile team and integrated features across scenes.</li>
               </ul>
-              <div class="links" style="margin-top:10px;">
+              <div class="links">
                 <a class="btnlink" href="https://github.com/chris-pitre/Soundscape" target="_blank" rel="noreferrer">GitHub Repo</a>
               </div>
             </article>
@@ -344,15 +366,13 @@
             <article class="panel proj">
               <h3>SpaceBugBlast</h3>
               <div class="meta">
-                <span>Unity (C#)</span>
-                <span>•</span>
-                <span>Feb 2022 – May 2022</span>
+                <span>Unity (C#)</span><span>•</span><span>Feb 2022 – May 2022</span>
               </div>
               <ul class="list">
-                <li> Very messy Roguelike shooter prototype with procedural levels and dynamic enemy spawns.</li>
-                <li>Created with major time constraints as part of a class on Unity basics</li>
+                <li>Roguelike shooter prototype with procedural levels and dynamic spawns.</li>
+                <li>Built for a Unity fundamentals course with limited development time.</li>
               </ul>
-              <div class="links" style="margin-top:10px;">
+              <div class="links">
                 <a class="btnlink" href="https://github.com/katenip/SpaceBugBlast" target="_blank" rel="noreferrer">GitHub Repo</a>
               </div>
             </article>
@@ -360,15 +380,13 @@
             <article class="panel proj">
               <h3>Tower-Babel</h3>
               <div class="meta">
-                <span>Web App (JavaScript, Firebase)</span>
-                <span>•</span>
-                <span>Feb 2023 – May 2023</span>
+                <span>Web App (JavaScript, Firebase)</span><span>•</span><span>Feb 2023 – May 2023</span>
               </div>
               <ul class="list">
-                <li>Blog-style web app with secure user auth and interactive content.</li>
-                <li>Helped with development and implementation.</li>
+                <li>Blog-style web app with authentication and interactive content.</li>
+                <li>Contributed to development and implementation.</li>
               </ul>
-              <div class="links" style="margin-top:10px;">
+              <div class="links">
                 <a class="btnlink" href="https://github.com/Tower-Babel/FinalProject" target="_blank" rel="noreferrer">GitHub Repo</a>
               </div>
             </article>
@@ -378,22 +396,18 @@
         <section id="tab-about" role="tabpanel" aria-labelledby="btn-about" hidden>
           <h2>About</h2>
           <div class="panel">
-
             <ul class="list">
-              <li>What I’m interested in right now practical applications for ML especailly AI uses in the public sector</li>
-              <li>Currently looking for internships for Summer 2026. I would love to do something that involves real world programing</li>
+              <li>Interested in practical ML—especially uses in the public sector.</li>
+              <li>Seeking Summer 2026 internships focused on real-world software that ships to users.</li>
             </ul>
-
           </div>
         </section>
 
         <section id="tab-games" role="tabpanel" aria-labelledby="btn-games" hidden>
           <h2>Game Recommendations</h2>
-         
-
           <div class="panel">
             <ul class="list" id="gamesList">
-              <li>Void Stranger (Really amazing go in with no spoilers and thank me later)</li>
+              <li>Void Stranger</li>
               <li>Outer Wilds</li>
               <li>Baba Is You</li>
             </ul>
@@ -421,7 +435,6 @@
         const btn = document.getElementById(t.btn);
         const panel = document.getElementById(t.panel);
         const active = (t.btn === btnId);
-
         btn.setAttribute("aria-selected", active ? "true" : "false");
         panel.hidden = !active;
       }
@@ -431,11 +444,7 @@
       document.getElementById(t.btn).addEventListener("click", () => setActive(t.btn));
     }
 
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
-
-
