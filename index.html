@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kate Scarboro</title>
+
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+        background: #0b0f19;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        overflow: hidden;
+    }
+
+    /* Star layers */
+    .stars, .stars2, .stars3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-repeat: repeat;
+        animation: drift linear infinite;
+    }
+
+    .stars {
+        background-image: radial-gradient(white 1px, transparent 1px);
+        background-size: 3px 3px;
+        opacity: 0.4;
+        animation-duration: 120s;
+    }
+
+    .stars2 {
+        background-image: radial-gradient(white 1px, transparent 1px);
+        background-size: 2px 2px;
+        opacity: 0.25;
+        animation-duration: 200s;
+    }
+
+    .stars3 {
+        background-image: radial-gradient(white 1px, transparent 1px);
+        background-size: 1px 1px;
+        opacity: 0.15;
+        animation-duration: 300s;
+    }
+
+    @keyframes drift {
+        from { transform: translateY(0); }
+        to { transform: translateY(-2000px); }
+    }
+
+    /* Center content */
+    .content {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 800;
+        color: #ff7a18;
+        letter-spacing: 0.08em;
+        margin: 0;
+    }
+
+    p {
+        margin-top: 20px;
+        opacity: 0.7;
+        font-size: 1rem;
+    }
+</style>
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<div class="content">
+    <h1>WORK IN PROGRESS</h1>
+    <p>Portfolio under construction</p>
+</div>
+</body>
+</html>
