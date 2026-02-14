@@ -166,6 +166,25 @@
       box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
     }
 
+    .navlink{
+      font-family: var(--mono);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: rgba(233,236,245,.85);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;  
+    }
+      
+    .navlink:hover{
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+    }
+
+
     main{ padding: 18px; }
     section[hidden]{ display:none; }
 
@@ -334,11 +353,16 @@
 
     <div class="card" role="application" aria-label="Portfolio">
       <nav class="nav" aria-label="Sections">
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
         <button class="tabbtn" role="tab" aria-selected="true" aria-controls="tab-home" id="btn-home">home</button>
         <button class="tabbtn" role="tab" aria-selected="false" aria-controls="tab-projects" id="btn-projects">projects</button>
         <button class="tabbtn" role="tab" aria-selected="false" aria-controls="tab-about" id="btn-about">about</button>
         <button class="tabbtn" role="tab" aria-selected="false" aria-controls="tab-games" id="btn-games">games</button>
-      </nav>
+      </div>
+    
+      <a class="navlink" href="/data">research projects</a>
+    </nav>
+
 
       <main>
         <section id="tab-home" role="tabpanel" aria-labelledby="btn-home">
@@ -538,4 +562,5 @@
   </script>
 </body>
 </html>
+
 
